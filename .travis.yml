@@ -13,3 +13,8 @@ cache:
     - $HOME/.gradle/caches/
     - $HOME/.gradle/wrapper/
     
+#Skip install step
+install: true
+
+script: 
+ - ./gradlew integTest 
