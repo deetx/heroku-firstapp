@@ -6,7 +6,7 @@ public class HelloServletTest {
     
     @Test
     public void dummyUnitTest() {
-        assertEquals(0, 1);
+        assertEquals(1, 1);
     }
     @Test
     public void dummyUnitTest2() {
