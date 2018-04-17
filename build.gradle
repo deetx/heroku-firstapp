@@ -10,6 +10,19 @@ task copyToLib(type: Copy) {
     }
 }
 
+sourceSets {  
+    	integTest {
+        	java.srcDir file('src/integTest/java')
+        	resources.srcDir file('src/integTest/resources')
+    	}
+}
+
+task integTest(type: Test) {  
+    testClassesDirs = sourceSets.integTest.output.classesDirs
+    classpath = sourceSets.integTest.runtimeClasspath
+    mustRunAfter(test)
+}
+
 task stage {
     dependsOn clean, war, copyToLib 
 }
@@ -24,5 +37,11 @@ dependencies {
     providedCompile 'javax.servlet:javax.servlet-api:3.1.0'
     testCompile 'junit:junit:4.12'
     compileOnly 'org.eclipse.jetty:jetty-runner:9.4.9.v20180320'
+    integTestCompile configurations.testCompile
+    integTestRuntime configurations.testRuntime
+    integTestCompile sourceSets.main.output
+    integTestCompile sourceSets.test.output
+
 }
+
 
