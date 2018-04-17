@@ -1,3 +1,6 @@
+plugins {
+    id 'war'
+}
 task copyToLib(type: Copy) {
     into "$buildDir/server"				
     from(configurations.compileOnly) {	
@@ -11,10 +14,6 @@ task stage {
     dependsOn clean, war, copyToLib 
 }
 war.mustRunAfter clean	
-
-plugins {
-    id 'war'
-}
 
 repositories {
     jcenter()
